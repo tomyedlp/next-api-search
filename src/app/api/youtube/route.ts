@@ -1,15 +1,20 @@
 import { NextResponse } from "next/server";
-import axios from "axios";
+import { Client } from "youtubei";
 
 export async function POST(request: Request) {
     const data = await request.json();
-    console.log(process.env.URL_YOUTUBE);
-    const result = await axios.get(process.env.URL_YOUTUBE, {
-        params: {
-            type: "video",
-            part: "snippet",
-            q: data.game
+    const youtube = new Client();
+    const videos = await youtube.search(data.name, {
+		type: "video", // video | playlist | channel | all
+	});
+
+    let arrayVideos: Array<string> = []
+    let count = 1;
+    videos.items.map((video) => {
+        if(count <= 3) {
+            arrayVideos.push(video.id);
         }
+        count++;
     })
-    return NextResponse.json(result)
+    return NextResponse.json(arrayVideos)
 }
