@@ -6,12 +6,6 @@ interface Params {
 }
 
 export async function GET(request: Request, { params }: Params) {
-    console.log(params)
-    return NextResponse.json({ test: "AA" });
-}
-
-export async function POST(request: Request) {
-    const data = await request.json();
-    console.log(data);
-    return NextResponse.json(data);
+    const result = await axios.get(process.env.URL_RAWG+'games/'+params.game+'?key='+process.env.API_KEY_SECRET)
+    return NextResponse.json(result.data)
 }

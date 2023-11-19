@@ -21,7 +21,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="container mx-auto items-center header flex justify-between py-8">
+        <div className="items-center header flex justify-between py-8">
             <div className="logo">
                 Test api
             </div>

@@ -32,7 +32,7 @@ function SearchInput() {
 
   return (
     <>
-      <div className='w-1/2 relative justify-self-center'>
+      <div className='mx-auto w-1/2 relative justify-self-center'>
           <div>Busque su videojuego favorito</div>
           <input type="text"
               className='rounded-md p-2 w-full border-solid border-2 border-slate-950 dark:border-slate-100'
