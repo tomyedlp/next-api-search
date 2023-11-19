@@ -3,8 +3,9 @@ import { Client } from "youtubei";
 
 export async function POST(request: Request) {
     const data = await request.json();
+    const year = new Date(data.released).getFullYear()
     const youtube = new Client();
-    const videos = await youtube.search(data.name, {
+    const videos = await youtube.search(data.name+" "+year, {
 		type: "video", // video | playlist | channel | all
 	});
 
