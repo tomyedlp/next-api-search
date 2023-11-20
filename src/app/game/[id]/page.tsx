@@ -4,10 +4,13 @@ import axios, { AxiosResponse } from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import parse from 'html-react-parser';
+import YouTube, { YouTubeEvent } from 'react-youtube';
 import { Game } from "@/app/models/Games"
 import LoadingPage from '@/app/components/Loading';
 import Modal from '@/app/components/Modal';
-import YouTube, { YouTubeEvent } from 'react-youtube';
+import { checkFav, setFav } from '@/app/utils/storage';
+import { MdFavoriteBorder } from "react-icons/md";
+import { MdFavorite } from "react-icons/md";
 
 function gamePage({ params }: { params: { id: number | undefined | null }}) {
 
@@ -15,7 +18,7 @@ function gamePage({ params }: { params: { id: number | undefined | null }}) {
     const [videosYT, setVideosYT] = useState<Array<string>>([])
     const [openModal, setOpenModal] = useState<boolean>(false)
     const [selectedVideo, setSelectedVideo] = useState<string>("")
-
+    const [iconFav, setIconFav] = useState<boolean>(false)
 
     useEffect(() => {
         const getGameInfoWhileLoading = async () => {
@@ -23,6 +26,7 @@ function gamePage({ params }: { params: { id: number | undefined | null }}) {
                 const result = await axios.get('/api/search/'+params.id)
                 //console.log(result.data)
                 setInfoGame(result.data)
+                setIconFav(checkFav(result.data.id))
             }
             return infoGame
         };
@@ -46,6 +50,10 @@ function gamePage({ params }: { params: { id: number | undefined | null }}) {
         fetchData();
     }, [infoGame]);
 
+    useEffect(() => {
+        setIconFav(checkFav(infoGame?.id))
+    }, [iconFav])
+    
     const openModalYoutube = (e: YouTubeEvent, video: string) => {
         e.target.pauseVideo();
         setSelectedVideo(video)
@@ -70,7 +78,18 @@ function gamePage({ params }: { params: { id: number | undefined | null }}) {
                             className="mr-2"
                         />
                         <div className='ml-2'>
-                            <div className="font-bold text-4xl mb-2">{infoGame?.name}</div>
+                            <div className='flex justify-between'>
+                                <div className="font-bold text-4xl mb-2">{infoGame?.name}</div>
+                                <div className='self-center'>
+                                    {!iconFav &&
+                                        <MdFavoriteBorder size={25} onClick={() => {setFav(infoGame.id);setIconFav(prevState => !prevState)}} className="cursor-pointer" />
+                                        
+                                    }
+                                    {iconFav && 
+                                        <MdFavorite size={25} onClick={() => {setFav(infoGame.id);setIconFav(prevState => !prevState)}}  className="cursor-pointer" />
+                                    }
+                                </div>
+                            </div>
                             <div className="flex mb-2 italic">{infoGame?.platforms?.map((platform, i) => {
                                 if(i+1 !== infoGame?.platforms?.length) {
                                     return (<div className="text-sm" key={platform?.platform.id}>{platform?.platform.name}&nbsp;-&nbsp;</div>)

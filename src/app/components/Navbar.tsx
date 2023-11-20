@@ -26,8 +26,11 @@ const Navbar = () => {
                 Test api
             </div>
             <ul className="navbar flex">
-                <li>
+                <li className="border-r-2 pr-2 mr-2">
                     <Link href="/">Home</Link>
+                </li>
+                <li className="border-r-2 pr-2 mr-2">
+                    <Link href="/favs">Mis favoritos</Link>
                 </li>
                 <li>
                 {theme === "dark" ? (
