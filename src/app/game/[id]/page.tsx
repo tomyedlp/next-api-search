@@ -8,9 +8,8 @@ import YouTube, { YouTubeEvent } from 'react-youtube';
 import { Game } from "@/app/models/Games"
 import LoadingPage from '@/app/components/Loading';
 import Modal from '@/app/components/Modal';
-import { checkFav, setFav } from '@/app/utils/storage';
-import { MdFavoriteBorder } from "react-icons/md";
-import { MdFavorite } from "react-icons/md";
+import IconsFav from '@/app/components/Favs/IconsFav';
+import { checkFav } from '@/app/utils/storage';
 
 function gamePage({ params }: { params: { id: number | undefined | null }}) {
 
@@ -77,17 +76,11 @@ function gamePage({ params }: { params: { id: number | undefined | null }}) {
                             height={400}
                             className="mr-2"
                         />
-                        <div className='ml-2'>
-                            <div className='flex justify-between'>
+                        <div className='ml-2 w-full'>
+                            <div className='flex justify-between w-full'>
                                 <div className="font-bold text-4xl mb-2">{infoGame?.name}</div>
                                 <div className='self-center'>
-                                    {!iconFav &&
-                                        <MdFavoriteBorder size={25} onClick={() => {setFav(infoGame.id);setIconFav(prevState => !prevState)}} className="cursor-pointer" />
-                                        
-                                    }
-                                    {iconFav && 
-                                        <MdFavorite size={25} onClick={() => {setFav(infoGame.id);setIconFav(prevState => !prevState)}}  className="cursor-pointer" />
-                                    }
+                                    <IconsFav iconFav={iconFav} setIconFav={setIconFav} id={infoGame?.id} />
                                 </div>
                             </div>
                             <div className="flex mb-2 italic">{infoGame?.platforms?.map((platform, i) => {

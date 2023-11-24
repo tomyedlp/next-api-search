@@ -1,10 +1,14 @@
 export const getFavs = () => {
-    if(localStorage.getItem('allGamesFav') !== null || '""') {
-        var allElements: Array<number> = JSON.parse(localStorage.getItem('allGamesFav') || '""');
-        return allElements;
+    if(typeof window !== "undefined") {
+        if(localStorage.getItem('allGamesFav') !== null || '""') {
+            var allElements: Array<number> = JSON.parse(localStorage.getItem('allGamesFav') || '""');
+            return allElements;
+        } else {
+            return []
+        } 
     } else {
         return []
-    } 
+    }
 }
 
 export const setFav = (id: number | null | undefined) => {
