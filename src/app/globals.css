@@ -7,7 +7,11 @@ body {
 }
 
 .divSearchingFocus {
-  @apply p-2 border-solid border-2 border-slate-950 dark:border-slate-100 border-b-0 first:rounded-t-md last:rounded-b-md last:border-b-2 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 flex
+  @apply p-2 border-solid border-2 border-slate-950 dark:border-slate-100 border-b-0 first:rounded-t-md last:rounded-b-md last:border-b-2 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 flex transition ease-linear delay-0
+}
+
+.buttonStyle {
+  @apply py-1 px-2 rounded-sm border-solid border-2 border-slate-950 dark:border-slate-100 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition ease-linear delay-0 min-w-[100px]
 }
 
 /* width */

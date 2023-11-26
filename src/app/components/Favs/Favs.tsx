@@ -16,18 +16,20 @@ const getGameInfo = async (id: number, iconFav: boolean, setIconFav: Dispatch<Se
     if(resultGame) {
        return (
             <>
-                <Image src={resultGame?.background_image || ""} alt={resultGame?.name}
-                    width={200}
-                    height={200}
-                    className="mr-1"
-                />
-                <div className='ml-1 flex flex-col justify-between self-stretch w-full'>
-                    <div className='flex'>
-                        <div className="font-bold text-xl mb-2">{resultGame?.name}</div>
+                <Link href={'/game/'+id} className="w-full flex items-start">
+                    <Image src={resultGame?.background_image || ""} alt={resultGame?.name}
+                        width={200}
+                        height={200}
+                        className="mr-1"
+                    />
+                    <div className='ml-1 flex flex-col justify-between self-stretch w-full'>
+                        <div className='flex sta'>
+                            <div className="font-bold text-xl mb-2">{resultGame?.name}</div>
+                        </div>
                     </div>
-                    <div className='flex justify-end'>
-                        <IconsFav iconFav={iconFav} setIconFav={setIconFav} id={id} />
-                    </div>
+                </Link>
+                <div className='absolute right-0 bottom-[0rem]'>
+                    <IconsFav iconFav={iconFav} setIconFav={setIconFav} id={id} sure={true} nameGame={resultGame.name} />
                 </div>
             </>
         )
@@ -55,12 +57,10 @@ function FavGame(params: { fav: number }) {
 
     if(iconFav) {
         return (
-            <div className='bg-slate-200 dark:bg-slate-900 rounded-sm p-3'>
-                <Link href={'/game/'+params.fav}>
-                    <div className='flex items-start'>
-                        {getGameInfo(params.fav, iconFav, setIconFav, resultGame)}
-                    </div>
-                </Link>
+            <div className='bg-slate-200 hover:bg-slate-300 dark:bg-slate-900 dark:hover:bg-slate-800 transition linear delay-150 rounded-sm p-3 mr-3'>
+                <div className='relative'>
+                    {getGameInfo(params.fav, iconFav, setIconFav, resultGame)}
+                </div>
             </div>
         )
     }

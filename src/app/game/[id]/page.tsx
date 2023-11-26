@@ -84,11 +84,8 @@ function gamePage({ params }: { params: { id: number | undefined | null }}) {
                                 </div>
                             </div>
                             <div className="flex mb-2 italic">{infoGame?.platforms?.map((platform, i) => {
-                                if(i+1 !== infoGame?.platforms?.length) {
-                                    return (<div className="text-sm" key={platform?.platform.id}>{platform?.platform.name}&nbsp;-&nbsp;</div>)
-                                } else {
-                                    return (<div className="text-sm" key={platform?.platform.id}>{platform?.platform.name}</div>)
-                                }
+                                let last = i+1 !== infoGame?.platforms?.length ? parse("&nbsp;-&nbsp;") : ""
+                                return (<div className="text-sm" key={platform?.platform.id}>{platform?.platform.name}{last}</div>)
                             })}</div>
                             <div className="text-md max-h-[215px] overflow-auto h-auto">{parse(infoGame?.description || "")}</div>
                         </div>
