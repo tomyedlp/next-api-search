@@ -32,6 +32,9 @@ const Navbar = () => {
                 <li className="border-r-2 pr-2 mr-2">
                     <Link href="/favs">Mis favoritos</Link>
                 </li>
+                <li className="border-r-2 pr-2 mr-2">
+                    <Link href="/rating">Mis ratings</Link>
+                </li>
                 <li>
                 {theme === "dark" ? (
                     <FiMoon size={25} cursor="pointer" onClick={() => setTheme("light")} />

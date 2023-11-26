@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import axios from 'axios'
 import IconsFav from './IconsFav';
-import { checkFav } from '@/app/utils/storage';
+import { checkLocalStorage } from '@/app/utils/storage';
 import LoadingPage from '@/app/components/Loading';
 
 const getGameInfo = async (id: number, iconFav: boolean, setIconFav: Dispatch<SetStateAction<boolean>>, resultGame: Game | undefined) => {
@@ -23,7 +23,7 @@ const getGameInfo = async (id: number, iconFav: boolean, setIconFav: Dispatch<Se
                         className="mr-1"
                     />
                     <div className='ml-1 flex flex-col justify-between self-stretch w-full'>
-                        <div className='flex sta'>
+                        <div className='flex start'>
                             <div className="font-bold text-xl mb-2">{resultGame?.name}</div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@ function FavGame(params: { fav: number }) {
     }, [resultGame])
 
     useEffect(() => {
-        setIconFav(checkFav(params.fav))
+        setIconFav(checkLocalStorage(params.fav, "allGamesFav"))
     }, [iconFav])
 
     if(iconFav) {

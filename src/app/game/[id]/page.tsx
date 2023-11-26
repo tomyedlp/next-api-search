@@ -6,10 +6,11 @@ import Link from "next/link";
 import parse from 'html-react-parser';
 import YouTube, { YouTubeEvent } from 'react-youtube';
 import { Game } from "@/app/models/Games"
+import Stars from '@/app/components/Stars/Stars';
 import LoadingPage from '@/app/components/Loading';
 import Modal from '@/app/components/Modal';
 import IconsFav from '@/app/components/Favs/IconsFav';
-import { checkFav } from '@/app/utils/storage';
+import { checkLocalStorage } from '@/app/utils/storage';
 
 function gamePage({ params }: { params: { id: number | undefined | null }}) {
 
@@ -25,7 +26,7 @@ function gamePage({ params }: { params: { id: number | undefined | null }}) {
                 const result = await axios.get('/api/search/'+params.id)
                 //console.log(result.data)
                 setInfoGame(result.data)
-                setIconFav(checkFav(result.data.id))
+                setIconFav(checkLocalStorage(result.data.id, "allGamesFav"))
             }
             return infoGame
         };
@@ -50,7 +51,7 @@ function gamePage({ params }: { params: { id: number | undefined | null }}) {
     }, [infoGame]);
 
     useEffect(() => {
-        setIconFav(checkFav(infoGame?.id))
+        setIconFav(checkLocalStorage(infoGame?.id, "allGamesFav"))
     }, [iconFav])
     
     const openModalYoutube = (e: YouTubeEvent, video: string) => {
@@ -114,6 +115,7 @@ function gamePage({ params }: { params: { id: number | undefined | null }}) {
                         </div>
                         <div>
                             acá van los links/medios para comprar el juego.. 
+                            <Stars id={infoGame?.id} rating={null} />
                         </div>
                     </div>
                 </>

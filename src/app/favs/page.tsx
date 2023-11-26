@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect } from 'react'
-import { getFavs } from '@/app/utils/storage'
+import { getLocalInfo } from '@/app/utils/storage'
 import LoadingPage from '@/app/components/Loading'
 import dynamic from 'next/dynamic'
  
@@ -14,7 +14,7 @@ function MyFavs() {
         setIsClient(true)
     }, [])
 
-    const favs: number[] = isClient ? getFavs() : []
+    const favs: number[] = isClient ? getLocalInfo("allGamesFav") : []
 
     return (
         <>
