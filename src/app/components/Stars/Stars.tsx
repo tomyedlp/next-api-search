@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { Rating } from 'react-custom-rating-component'
-import { checkLocalStorage, setStarsRating } from '@/app/utils/storage'
+import { checkLocalStorage, setIdToValue } from '@/app/utils/storage'
 
 function Stars(params: { id: number | undefined | null, rating: null | number}) {
 
@@ -16,7 +16,7 @@ function Stars(params: { id: number | undefined | null, rating: null | number}) 
 
     useEffect(() => {
         if(changedStars && typeof params.id === "number") {
-            setStarsRating(params.id, stars)
+            setIdToValue("allGamesStarsRating", params.id, stars)
         }
     }, [stars])
 

@@ -11,13 +11,3 @@ export interface Game {
 export interface Games {
     games: Game[]
 }
-  
-
-export interface Rating {
-    Rating: RatingGame[]
-}
-
-export interface RatingGame {
-    id: number | null | undefined,
-    rating: number
-}

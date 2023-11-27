@@ -21,9 +21,9 @@ const Navbar = () => {
     }
 
     return (
-        <div className="items-center header flex justify-between py-8">
-            <div className="logo">
-                Test api
+        <div className="container mx-auto items-center header flex justify-between py-8">
+            <div className="logo font-bold">
+                VideoGames API
             </div>
             <ul className="navbar flex">
                 <li className="border-r-2 pr-2 mr-2">

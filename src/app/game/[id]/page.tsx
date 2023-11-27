@@ -10,7 +10,7 @@ import Stars from '@/app/components/Stars/Stars';
 import LoadingPage from '@/app/components/Loading';
 import Modal from '@/app/components/Modal';
 import IconsFav from '@/app/components/Favs/IconsFav';
-import { checkLocalStorage } from '@/app/utils/storage';
+import { setIdToValue, checkLocalStorage } from '@/app/utils/storage';
 
 function gamePage({ params }: { params: { id: number | undefined | null }}) {
 
@@ -19,6 +19,8 @@ function gamePage({ params }: { params: { id: number | undefined | null }}) {
     const [openModal, setOpenModal] = useState<boolean>(false)
     const [selectedVideo, setSelectedVideo] = useState<string>("")
     const [iconFav, setIconFav] = useState<boolean>(false)
+    const [playing, setPlaying] = useState<number>(0)
+    const [yourNotes, setYourNotes] = useState<string>("")
 
     useEffect(() => {
         const getGameInfoWhileLoading = async () => {
@@ -27,6 +29,8 @@ function gamePage({ params }: { params: { id: number | undefined | null }}) {
                 //console.log(result.data)
                 setInfoGame(result.data)
                 setIconFav(checkLocalStorage(result.data.id, "allGamesFav"))
+                setPlaying(checkLocalStorage(result.data.id, "allGamesPlaying"))
+                setYourNotes(checkLocalStorage(result.data.id, "allGamesNotes"))
             }
             return infoGame
         };
@@ -60,8 +64,23 @@ function gamePage({ params }: { params: { id: number | undefined | null }}) {
         setOpenModal(true)
     }
 
+    const selectRunGame = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        if(typeof infoGame?.id === "number") {
+            setIdToValue("allGamesPlaying", infoGame?.id, parseInt(e.target.value))
+            setPlaying(parseInt(e.target.value))
+        }
+    }
+
+    const addingNotes = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        if(typeof infoGame?.id === "number") {
+            setIdToValue("allGamesNotes", infoGame?.id, e.target.value)
+            setYourNotes(e.target.value)
+        }
+    }
+
+
     return (
-        <div className='container bg-slate-200 dark:bg-slate-900 rounded-sm p-5'>
+        <div className='container mx-auto bg-slate-200 dark:bg-slate-900 rounded-sm p-5'>
             {!infoGame && 
                 <LoadingPage />
             }
@@ -92,7 +111,7 @@ function gamePage({ params }: { params: { id: number | undefined | null }}) {
                         </div>
                     </div>
                     <div className='mt-10'>
-                        <div>
+                        <div className='mb-10'>
                             <div>Gameplay disponibles: </div>
                             <div className='flex mt-2'>
                                 {videosYT.map((video) => {
@@ -113,9 +132,30 @@ function gamePage({ params }: { params: { id: number | undefined | null }}) {
                                 })}
                             </div>
                         </div>
-                        <div>
-                            acá van los links/medios para comprar el juego.. 
-                            <Stars id={infoGame?.id} rating={null} />
+                        <hr />
+                        <div className='mt-5'>
+                            <div className="font-bold text-lg">Tu información acerca del juego: </div>
+                            <div className='flex flex-col'>
+                                <div className='flex my-3'>
+                                    <span className='w-56 mr-3 self-center min-w-'>Tu rating:</span> <Stars id={infoGame?.id} rating={null} />
+                                </div>
+                                <div className='flex my-3'>
+                                    <span className='w-56 mr-3 self-center'>Resultado del juego:</span> 
+                                    <select className='w-72 px-1 py-2' onChange={(e) => selectRunGame(e)} value={playing}>
+                                        <option value="0">No iniciado</option>
+                                        <option value="1">Jugando</option>
+                                        <option value="2">Finalizado</option>
+                                        <option value="3">Abandonado</option>
+                                        <option value="4">En espera</option>
+                                    </select>
+                                </div>
+                                <div className='flex my-3'>
+                                    <span className='w-56 mr-3 self-center'>Tus notas:</span> 
+                                    <textarea placeholder='Escriba algo...' className='w-72 h-32 p-1' onChange={(e) => addingNotes(e)}>
+                                        {yourNotes}
+                                    </textarea>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </>

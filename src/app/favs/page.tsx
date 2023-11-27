@@ -22,12 +22,12 @@ function MyFavs() {
                 <LoadingPage />
             }
             {!favs.length && 
-                <div className='flex justify-center h-32 bg-slate-200 dark:bg-slate-900 rounded-sm p-3'>
+                <div className='container mx-auto flex justify-center h-32 bg-slate-200 dark:bg-slate-900 rounded-sm p-3'>
                     <div className='self-center'>No tienes ningún juego favorito.</div>
                 </div>
             }
             {favs.length !== 0 &&
-                <div className='grid grid-cols-3'>
+                <div className='container mx-auto grid grid-cols-3'>
                     {favs.map((fav: number) => (
                         <NoSSR key={fav} fav={fav} />
                     ))}

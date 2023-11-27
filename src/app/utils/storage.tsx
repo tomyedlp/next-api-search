@@ -35,15 +35,16 @@ export const setFav = (id: number | null | undefined) => {
 }
 
 
-export const setStarsRating = (id: number, rating: number) => {
-    if(localStorage.getItem("allGamesStarsRating") !== null || '""') {
-        var allElements: Array<Object> = JSON.parse(localStorage.getItem("allGamesStarsRating") || '""');
-        let pair = {[id]: rating}
+export const setIdToValue = (nameLocalStorage: string, id: number, something: number | string) => {
+    //allGamesStarsRating, allGamesPlaying, allGamesFav, allGamesNotes
+    if(localStorage.getItem(nameLocalStorage) !== null || '""') {
+        var allElements: Array<Object> = JSON.parse(localStorage.getItem(nameLocalStorage) || '""');
+        let pair = {[id]: something}
         allElements = {...allElements, ...pair}
-        localStorage.setItem("allGamesStarsRating", JSON.stringify(allElements));
+        localStorage.setItem(nameLocalStorage, JSON.stringify(allElements));
     } else {
-        let newStorage = {[id]: rating};
-        localStorage.setItem("allGamesStarsRating", JSON.stringify(newStorage));
+        let newStorage = {[id]: something};
+        localStorage.setItem(nameLocalStorage, JSON.stringify(newStorage));
     }
 }
 
@@ -51,12 +52,16 @@ export const setStarsRating = (id: number, rating: number) => {
 export const checkLocalStorage = (id: number | null | undefined, nameLocalStorage: string) => {
     if(localStorage.getItem(nameLocalStorage) !== null || '""') {
         var allElements: Array<any> = JSON.parse(localStorage.getItem(nameLocalStorage) || '""');
-        if(nameLocalStorage === "allGamesStarsRating" && typeof id === "number") {
+        if(nameLocalStorage !== "allGamesFav" && typeof id === "number") {
             console.log(allElements)
             if(allElements.hasOwnProperty(id)) {
                 return allElements[id]
             } else {
-                return 0
+                if(nameLocalStorage === "allGamesNotes") {
+                    return ""
+                } else {
+                    return 0
+                }
             }
         } else {
             if(allElements.includes(id)) {
@@ -66,7 +71,7 @@ export const checkLocalStorage = (id: number | null | undefined, nameLocalStorag
             }
         }
     } else {
-        if(nameLocalStorage === "allGamesStarsRating") {
+        if(nameLocalStorage !== "allGamesFav") {
             return 0
         } else {
             return false

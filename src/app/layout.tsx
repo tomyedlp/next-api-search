@@ -20,13 +20,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+        <body className="min-h-screen mx-auto flex flex-col">
         <Providers>
           <Navbar />
-          {children}
+          <div className='flex-1'>
+            {children}
+          </div>
           <Footer />
         </Providers>
-      </body>
+        </body>
     </html>
   )
 }

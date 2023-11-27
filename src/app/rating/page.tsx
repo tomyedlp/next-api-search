@@ -24,13 +24,13 @@ function Rating() {
         <LoadingPage />
     }
     {!Object.keys(rating).length && 
-        <div className='flex justify-center h-32 bg-slate-200 dark:bg-slate-900 rounded-sm p-3'>
+        <div className='container mx-auto flex justify-center h-32 bg-slate-200 dark:bg-slate-900 rounded-sm p-3'>
             <div className='self-center'>No has valorado ningún juego todavía.</div>
         </div>
     }
 
     return (
-        <div className='grid grid-cols-3'>
+        <div className='container mx-auto grid grid-cols-3'>
             {starGamesLooping()}
         </div>
     )
