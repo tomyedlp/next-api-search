@@ -4,15 +4,14 @@ import axios from "axios"
 import PostContent from "@/app/components/Posts/PostContent"
 
 interface PostNode {
-    title: string;
-    excerpt: string;
+    title: string
+    excerpt: string
     date?: Date
     slug?: string
-  }
-  
-  interface Post {
-    node: PostNode;
-  }
+}
+interface Post {
+    node: PostNode
+}
 
 
 function Blog() {
@@ -33,12 +32,15 @@ function Blog() {
             return posts.map((post, id) => (
                <PostContent key={id} title={post.node.title} content={post.node.excerpt} />
             ))
+        } else {
+            return <div className='mx-auto bg-slate-200 dark:bg-slate-900 rounded-sm p-5'>No hay posts. </div>
         }
     }
 
-
   return (
-    loopingPosts()
+    <div className='container mx-auto'>
+        {loopingPosts()}
+    </div>
   )
 }
 
