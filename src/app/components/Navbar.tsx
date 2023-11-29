@@ -30,6 +30,9 @@ const Navbar = () => {
                     <Link href="/">Home</Link>
                 </li>
                 <li className="border-r-2 pr-2 mr-2">
+                    <Link href="/blog">Blog</Link>
+                </li>
+                <li className="border-r-2 pr-2 mr-2">
                     <Link href="/favs">Mis favoritos</Link>
                 </li>
                 <li className="border-r-2 pr-2 mr-2">

@@ -7,6 +7,10 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'media.rawg.io',
             },
+            {
+                protocol: 'http',
+                hostname: 'practica-inmobiliaria.local'
+            }
             ],
         }
     }

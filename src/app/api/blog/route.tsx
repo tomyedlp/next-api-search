@@ -3,17 +3,22 @@ import { NextResponse } from "next/server";
 export async function POST() {
     const params = {
         query:` query AllPosts {
-            posts(first: 20, where: { orderby: { field: DATE, order: DESC } }) {
+            posts(first: 20) {
                 edges {
                     node {
-                        title
-                        excerpt
-                        slug
-                        date
+                      title
+                      excerpt
+                      date
+                      postId
+                      featuredImage {
+                        node {
+                          sourceUrl
+                        }
+                      }
                     }
                 }
+              }
             }
-        }
     `, }
 
     const response = await fetch(`${process.env.WP_GRAPHQL_URL}`, {

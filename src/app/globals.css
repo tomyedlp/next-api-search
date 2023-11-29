@@ -83,3 +83,9 @@ body {
   min-width: 640px;
   min-height: 480px;
 }
+
+
+.opacityDiv {
+  -webkit-mask-image: linear-gradient(black 30%, transparent 90%);
+  mask-image: linear-gradient(black 30%, transparent 90%);
+}
