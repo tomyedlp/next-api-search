@@ -1,7 +1,7 @@
 interface PostNode {
     title: string
     excerpt: string
-    date?: string
+    date: string
     slug?: string
     postId: number
     content?: string
