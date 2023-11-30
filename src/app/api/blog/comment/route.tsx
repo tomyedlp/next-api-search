@@ -3,16 +3,23 @@ import { NextResponse } from "next/server";
 
 
 export async function POST(request: Request) {
+  
     const data = await request.json();
-    console.log(data.commentid)
+    console.log(data.comment, data.commentid)
+
+    const subpath = data.pathname.split("/");
+    let commentid = (data.commentid === undefined) ? "" : "parent: "+data.commentid 
 
       const createComment = {
         query: `
           mutation CREATE_COMMENT {
             createComment(input: {
-              commentOn: ${data.commentid}, 
+              status: APPROVE,
+              approved: "1",
+              commentOn: ${subpath[2]},
               content: "${data.comment}", 
-              author: "Anonymous"
+              author: "Anonymous",
+              ${commentid}
             }) {
               success
               comment {
@@ -37,16 +44,17 @@ export async function POST(request: Request) {
         `
       }
 
-    // const response = await fetch(`${process.env.WP_GRAPHQL_URL}`, {
-    //     method: "POST",
-    //     body: JSON.stringify(params),
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   });
-    //   const { data } = await response.json();
+    const response = await fetch(`${process.env.WP_GRAPHQL_URL}`, {
+        method: "POST",
+        body: JSON.stringify(createComment),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-store"
+      });
+      const result = await response.json();
 
-      //console.log(data.posts.edges)
+      console.log(result)
 
-    return NextResponse.json(data.comment)
+    return NextResponse.json(result)
 }

@@ -27,10 +27,9 @@ export async function POST() {
         headers: {
           "Content-Type": "application/json",
         },
+        cache: "no-store"
       });
       const { data } = await response.json();
-
-      //console.log(data.posts.edges)
 
     return NextResponse.json(data.posts.edges)
 }

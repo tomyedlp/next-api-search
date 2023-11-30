@@ -44,9 +44,6 @@ export interface commentNode {
 
 
 
-
-
-
 export interface Post {
     node: PostNode
 }

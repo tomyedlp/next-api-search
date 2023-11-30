@@ -13,7 +13,7 @@ export async function GET(request: Request, { params }: Params) {
               content
               date
               title
-              comments(where: {order: ASC}) {
+              comments(where: {order: ASC}, first: 100) {
                 edges {
                   node {
                     id

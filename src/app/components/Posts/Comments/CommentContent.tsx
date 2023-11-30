@@ -3,7 +3,7 @@ import parse from 'html-react-parser';
 import { commentNode } from "@/app/models/Posts"
 import { FaReply } from "react-icons/fa";
 
-function CommentContent(params: { comment: commentNode, setShowReply: Function, mL: number }) {
+function CommentContent(params: { comment: commentNode, setShowReply: Function | null, mL: number }) {
 
   const StringToDate = () => {
     let toDate: Date = new Date(params.comment.node.date || "")
@@ -23,7 +23,7 @@ function CommentContent(params: { comment: commentNode, setShowReply: Function, 
                 </div>
             </div>
             <div className='mb-3'>{parse(params.comment.node.content)}</div>
-            <FaReply onClick={() => params.setShowReply((prevState: boolean) => !prevState)} className="cursor-pointer hover:scale-125 transition ease-linear delay-0" />
+            <FaReply onClick={() => params.setShowReply !== null ? params.setShowReply((prevState: boolean) => !prevState) : ""} className="cursor-pointer hover:scale-125 transition ease-linear delay-0" />
         </div>
     )
     

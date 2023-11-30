@@ -13,7 +13,7 @@ function CommentSection(params: { comments: Array<commentNode>, comment: comment
                 return (
                     <div key={id}>
                         <CommentContent mL={mL} comment={comment} setShowReply={setShowReply} />
-                        <ReplySection mL={mL} showReply={showReply} commentid={comment.node.commentId} />
+                        <ReplySection mL={mL} showReply={showReply} setShowReply={setShowReply} commentid={comment.node.commentId} />
                         {loopingComments(comment.node.commentId, mL+25)}
                     </div>
                 )
@@ -29,7 +29,7 @@ function CommentSection(params: { comments: Array<commentNode>, comment: comment
             {params.comment.node.parentId === null &&
                 <>
                     <CommentContent mL={0} comment={params.comment} setShowReply={setShowReply} />
-                    <ReplySection mL={0} showReply={showReply} commentid={params.comment.node.commentId} />
+                    <ReplySection mL={0} showReply={showReply} setShowReply={setShowReply} commentid={params.comment.node.commentId} />
                     {loopingComments(params.comment.node.commentId, 25)}
                 </>
             }
