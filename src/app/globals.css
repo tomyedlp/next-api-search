@@ -11,7 +11,7 @@ body {
 }
 
 .buttonStyle {
-  @apply py-1 px-2 rounded-sm border-solid border-2 border-slate-950 dark:border-slate-100 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition ease-linear delay-0 min-w-[100px]
+  @apply py-1 px-2 rounded-sm border-solid border-2 border-slate-950 dark:border-slate-100 cursor-pointer hover:bg-slate-300 dark:hover:bg-slate-700 transition ease-linear delay-0 min-w-[100px]
 }
 
 /* width */

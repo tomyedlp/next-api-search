@@ -1,11 +1,13 @@
-interface PostNode {
+export interface PostNode {
     title: string
     excerpt: string
     date: string
     slug?: string
     postId: number
     content?: string
-    featuredImage?: featuredImage
+    featuredImage?: featuredImage,
+    comments: comments,
+    commentCount?: number
 }
 
 interface featuredImage {
@@ -15,6 +17,33 @@ interface featuredImage {
 interface featuredImageNode {
     sourceUrl: string
 }
+
+export interface comments {
+    edges: commentNode
+}
+
+export interface commentNode {
+    node: {
+        id: string,
+        parentId: null | string,
+        commentId: number,
+        content: string,
+        date: string,
+        author: {
+            node: {
+                name: string
+            }
+        }
+        parent: {
+            node: {
+                commentId: number
+            }
+        } | null
+    }
+}
+
+
+
 
 
 

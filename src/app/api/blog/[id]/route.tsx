@@ -13,6 +13,27 @@ export async function GET(request: Request, { params }: Params) {
               content
               date
               title
+              comments(where: {order: ASC}) {
+                edges {
+                  node {
+                    id
+                    parentId
+                    commentId
+                    date
+                    content
+                    author {
+                      node {
+                        name
+                      }
+                    }
+                    parent {
+                      node {
+                        commentId
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
     `, }
@@ -23,10 +44,11 @@ export async function GET(request: Request, { params }: Params) {
         headers: {
           "Content-Type": "application/json",
         },
+        cache: "no-store"
       });
       const { data } = await response.json();
 
-      console.log(data.post)
+      //console.log(data.post)
 
     return NextResponse.json(data.post)
 
