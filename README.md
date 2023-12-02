@@ -3,7 +3,7 @@
 La app web utiliza una API proveniente de RAWG.io para traer información de algún videojuego. Al cargar algún videojuego en una página, hace una búsqueda de videos en Youtube utilizando una librería que hace Web-Scraping y cuenta con la posibilidad de guardarlo a favoritos, puntuar, guardar información que usted desea sobre el videojuego utilizando `localStorage` del navegador.
 En la sección Blog utiliza GraphQL para cargar los posts desde el endpoint configurado en Wordpress. También puede cargar o escribir comentarios.
 
-La app web se creó de manera autodidacta con el fin de demostrar mis conocimientos como Fullstack Developer.
+La app web se creó de manera autodidacta con el fin de demostrar mis conocimientos como Fullstack Developer, sin fines de lucro.
 
 
 ### Lenguajes utilizados:
