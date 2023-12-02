@@ -5,7 +5,6 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   
     const data = await request.json();
-    console.log(data.comment, data.commentid)
 
     const subpath = data.pathname.split("/");
     let commentid = (data.commentid === undefined) ? "" : "parent: "+data.commentid 
@@ -53,8 +52,6 @@ export async function POST(request: Request) {
         cache: "no-store"
       });
       const result = await response.json();
-
-      console.log(result)
 
     return NextResponse.json(result)
 }

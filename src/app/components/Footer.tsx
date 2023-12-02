@@ -5,7 +5,7 @@ function Footer() {
     <div
       className="min-h-[50px] bg-slate-200 dark:bg-slate-900 mt-10 p-10"
     >
-      Something here...
+      Demostración básica del uso con NextJS, React Hooks, Tailwind CSS, WPGraphQL y Wordpress Headless.
     </div>
   )
 }

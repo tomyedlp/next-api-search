@@ -34,7 +34,7 @@ function PostBlog({ params }: { params: { id: string }}) {
 
 
     const loopingComments = () => {
-        console.log(comments)
+        //console.log(comments)
         if(comments.length === 0) {
             return <div className='flex justify-center my-10 italic'>No hay commentarios. Soyez Le Premier!</div>
         } else {
@@ -70,7 +70,6 @@ function PostBlog({ params }: { params: { id: string }}) {
                         <div className="font-bold text-xl">Comentarios: </div>
                         <div>
                             {loopingComments()}
-                            <hr className='my-10' />
                             <CreateStartComment />
                         </div>
                     </div>
