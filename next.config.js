@@ -9,7 +9,7 @@ const nextConfig = {
             },
             {
                 protocol: 'http',
-                hostname: 'practica-inmobiliaria.local'
+                hostname: process.env.WP_IMAGES_URL
             }
             ],
         }
