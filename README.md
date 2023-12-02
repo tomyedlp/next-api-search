@@ -6,7 +6,7 @@ En la sección Blog utiliza GraphQL para cargar los posts desde el endpoint conf
 La app web se creó de manera autodidacta con el fin de demostrar mis conocimientos como Fullstack Developer, sin fines de lucro.
 
 
-### Lenguajes utilizados:
+### Tecnologías utilizadas:
 - NextJS v13
 - React Hooks
 - Typescript
