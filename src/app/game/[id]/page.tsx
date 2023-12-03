@@ -1,8 +1,8 @@
 "use client"
+
 import React, { useState, useEffect } from 'react'
 import axios, { AxiosResponse } from "axios";
 import Image from "next/image";
-import Link from "next/link";
 import parse from 'html-react-parser';
 import YouTube, { YouTubeEvent } from 'react-youtube';
 import { Game } from "@/app/models/Games"
@@ -11,6 +11,7 @@ import LoadingPage from '@/app/components/Loading';
 import Modal from '@/app/components/Modal';
 import IconsFav from '@/app/components/Favs/IconsFav';
 import { setIdToValue, checkLocalStorage } from '@/app/utils/storage';
+
 
 function gamePage({ params }: { params: { id: number | undefined | null }}) {
 
@@ -31,6 +32,7 @@ function gamePage({ params }: { params: { id: number | undefined | null }}) {
                 setIconFav(checkLocalStorage(result.data.id, "allGamesFav"))
                 setPlaying(checkLocalStorage(result.data.id, "allGamesPlaying"))
                 setYourNotes(checkLocalStorage(result.data.id, "allGamesNotes"))
+                document.title = result.data?.name + " - VideoGames API"
             }
             return infoGame
         };
@@ -151,9 +153,7 @@ function gamePage({ params }: { params: { id: number | undefined | null }}) {
                                 </div>
                                 <div className='flex my-3'>
                                     <span className='w-56 mr-3 self-center'>Tus notas:</span> 
-                                    <textarea placeholder='Escriba algo...' className='w-72 h-32 p-1' onChange={(e) => addingNotes(e)}>
-                                        {yourNotes}
-                                    </textarea>
+                                    <textarea placeholder='Escriba algo...' className='w-72 h-32 p-1' onChange={(e) => addingNotes(e)} value={yourNotes}></textarea>
                                 </div>
                             </div>
                         </div>

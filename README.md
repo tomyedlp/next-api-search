@@ -36,8 +36,10 @@ WP_IMAGES_URL={YOUR URL}
 ```
 
 ### Wordpress Headless
-Para un correcto funcionamiento, se debe instalar el plugin WPGraphQL en Wordpress y configurar el endpoint en GraphQL/Settings, siendo en este caso "graphql" el endpoint, si observamos el archivo `.env` mencionado arriba.
+Para un correcto funcionamiento, se debe instalar el plugin **WPGraphQL*** en Wordpress y configurar el endpoint en GraphQL/Settings, siendo en este caso "graphql" el endpoint, si observamos el archivo `.env` mencionado arriba.
 En mi caso, se utilizó la app Local para configurar Wordpress desde localhost. Es posible utilizar XAMPP o WAMPP, o incluso un Wordpress online.
+
+- WPGraphQL: También se puede instalar *WP GraphQL Blocks ACF, WPGraphQL Blocks, WPGraphQL for Advanced Custom Fields, WPGraphQL Meta Query, WPGraphQL Offset Pagination* para obtener más funcionalidades.
 
 Archivo existente llamado client.tsx para configurar comunicación con Wordpress headless: 
 ```js
@@ -55,5 +57,5 @@ export default client;
 Correr `npm run dev` y tener online un blog de Wordpress o activado el Wordpress Headless desde localhost. Puede utilizar XAMPP o WAMPP con un puerto distinto al de 3000 para levantar el Wordpress.
 
 
-*Gracias por leer*.
-*Tomás B.*
+**Gracias por leer**.
+**Tomás B.**

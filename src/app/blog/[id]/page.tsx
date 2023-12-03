@@ -30,6 +30,7 @@ function PostBlog({ params }: { params: { id: string }}) {
             return post
         };
         getPostWhileLoading();
+        document.title = post?.title === undefined ? "VideoGames API": post?.title + " - VideoGames API"
     }, [status]);
 
 
